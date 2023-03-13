@@ -1,0 +1,14 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="docker: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" server-name="Local Docker">
+    <deployment type="docker-compose.yml">
+      <settings>
+        <option name="composeProjectName" value="my-laravel-app" />
+        <option name="envFilePath" value="" />
+        <option name="commandLineOptions" value="--build" />
+        <option name="sourceFilePath" value="docker/docker-compose.yml" />
+        <option name="upDetach" value="false" />
+      </settings>
+    </deployment>
+    <method v="2" />
+  </configuration>
+</component>
