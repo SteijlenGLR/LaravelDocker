@@ -29,7 +29,7 @@ services:
   nginx:
     image: nginx:latest
     ports:
-      - 80:80
+      - "80:80"
     environment:
       TZ: "Europe/Amsterdam"
     links:
@@ -53,7 +53,7 @@ services:
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
     ports:
-      - 8081:80
+      - "8081:80"
     environment:
       PMA_HOST: mariadb
       TZ: "Europe/Amsterdam"
