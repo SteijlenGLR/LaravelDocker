@@ -6,7 +6,8 @@ services:
   # PHP Service
   php:
     build:
-      dockerfile: php/php-dockerfile
+      context: ./php
+      dockerfile: php-dockerfile
 
     extra_hosts:
         - host.docker.internal:host-gateway
@@ -29,7 +30,7 @@ services:
   nginx:
     image: nginx:latest
     ports:
-      - "80:80"
+      - "81:80"
     environment:
       TZ: "Europe/Amsterdam"
     links:
@@ -46,7 +47,7 @@ services:
     ports:
         - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: 1234db$
+      MYSQL_ROOT_PASSWORD: "1234db"
       TZ: "Europe/Amsterdam"
     volumes:
       - mysqldata:/var/lib/mysql
@@ -55,7 +56,7 @@ services:
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
     ports:
-      - "8080:80"
+      - "8081:80"
     environment:
       PMA_HOST: mariadb
       TZ: "Europe/Amsterdam"
