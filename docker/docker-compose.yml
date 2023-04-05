@@ -15,9 +15,9 @@ services:
     environment:
       TZ: "Europe/Amsterdam"
       DB_HOST: mariadb
-      DB_NAME: mydatabase
-      DB_USER: myuser
-      DB_PASSWORD: mypassword
+      DB_NAME: laravel
+      DB_USER: laraveluser
+      DB_PASSWORD: laravel1234
     volumes:
       - '..:/var/www/html'
       - './php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini'
@@ -47,10 +47,16 @@ services:
     ports:
         - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: "1234db"
-      TZ: "Europe/Amsterdam"
+        MYSQL_DATABASE: laravel
+        MYSQL_USER: laraveluser
+        MYSQL_PASSWORD: laravel1234
+        MYSQL_ROOT_PASSWORD: 1234db
+        MYSQL_ROOT_HOST: "%" # Allow root login from anywhere
+        TZ: "Europe/Amsterdam"
     volumes:
       - mysqldata:/var/lib/mysql
+      - ./mariadb/init.sql:/docker-entrypoint-initdb.d/init.sql  # Copy the init.sql file to the container
+    command: --init-file /docker-entrypoint-initdb.d/init.sql  # Run the SQL commands from the init.sql file
 
   # phpMyAdmin Service
   phpmyadmin:
